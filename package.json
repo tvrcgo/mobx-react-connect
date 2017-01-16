@@ -1,0 +1,28 @@
+{
+  "name": "mobx-react-connect",
+  "version": "0.1.0",
+  "description": "Connect react component and mobx store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tvrcgo/mobx-react-connect.git"
+  },
+  "keywords": [
+    "mobx",
+    "react",
+    "mobx-react"
+  ],
+  "author": "tvrcgo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tvrcgo/mobx-react-connect/issues"
+  },
+  "homepage": "https://github.com/tvrcgo/mobx-react-connect#readme",
+  "dependencies": {
+    "mobx-react": "^4.1.0",
+    "react": "^15.4.2"
+  }
+}
