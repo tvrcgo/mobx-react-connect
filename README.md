@@ -17,7 +17,7 @@ Store class
 
 ```js
 // index.store.js
-class Store {
+export default class Store {
   @observable id = 0
   constructor (props) {
     const { id } = props
@@ -29,19 +29,9 @@ class Store {
     return this.id
   }
 
-  @action
-  increase = () => {
+  @action.bound
+  increase() {
     this.id++
-  }
-}
-
-// store entry.
-export default (props) => {
-  // instantiate store with props.
-  const store = new Store(props)
-  // map to props
-  return {
-    store
   }
 }
 ```
