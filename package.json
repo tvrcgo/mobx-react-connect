@@ -1,6 +1,6 @@
 {
   "name": "mobx-react-connect",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Connect react component and mobx store",
   "main": "index.js",
   "scripts": {
