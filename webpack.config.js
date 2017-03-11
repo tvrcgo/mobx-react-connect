@@ -3,6 +3,8 @@ const webpack = require('webpack')
 module.exports = {
   entry: './src/index.js',
   output: {
+    libraryTarget: 'umd',
+    library: 'mobxReactConnect',
     path: __dirname,
     filename: './index.js'
   },
@@ -35,9 +37,18 @@ module.exports = {
     })
   ],
   externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-    'mobx': 'mobx',
-    'mobx-react': 'mobxReact'
+    'react': {
+      root: 'React',
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react'
+    },
+    'mobx-react': {
+      root: 'mobxReact',
+      commonjs: 'mobx-react',
+      commonjs2: 'mobx-react',
+      amd: 'mobx-react'
+    },
+    'mobx': 'mobx'
   }
 }
