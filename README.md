@@ -1,10 +1,11 @@
 # mobx-react-connect
-Connect react component and mobx store.
+Connect react component, mobx store and css module.
 
 ### Features
 - No need inject and Provider.
 - Instantiate store class with component props.
 - Map stores to props.
+- Very easy use of css modules.
 
 ### Install
 ```js
@@ -12,6 +13,8 @@ npm install mobx-react-connect --save-dev
 ```
 
 ## Example
+
+### Connect component and store.
 
 Store class
 
@@ -59,6 +62,36 @@ Instantiate component.
 import HelloView from './index'
 
 <HelloView id={2} />
+```
+
+### Connect component and CSS Modules
+
+- `styleName`: Set **styleName** attribute for element. Styles in css modules with same name will be combined into **className** of element.
+- Multi style names is available and they will be joined together.
+
+```js
+import { connect } from 'mobx-react-connect'
+import css from './index.css'
+
+const View = ({ store }) => {
+  return (
+    <div styleName='green red'></div>
+  )
+}
+
+export default connect(View, {}, css)
+```
+
+`index.css` - Styles for component
+
+```css
+.green {
+  background-color: green;
+}
+
+.red {
+  color: red;
+}
 ```
 
 ## License
