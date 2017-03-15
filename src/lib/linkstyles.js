@@ -79,17 +79,20 @@ const linkStyles = (element, styles) => {
     delete copyElement.props.styleName
   }
 
-  if (typeof copyElement.type !== 'string') {
-    return copyElement
-  }
-
   // children
   const children = copyElement.props.children
 
   if (React.isValidElement(children)) {
     copyElement.props.children = linkStyles(React.Children.only(children), styles)
-  } else if (isArray(children) || isIterable(children)) {
-    copyElement.props.children = React.Children.map(children, (node) => {
+  } else if (isArray(children)) {
+    copyElement.props.children = children.map(node => {
+      if (React.isValidElement(node)) {
+        return linkStyles(node, styles)
+      }
+      return node
+    })
+  } else if (isIterable(children)) {
+    copyElement.props.children = React.Children.map(children, node => {
       if (React.isValidElement(node)) {
         return linkStyles(node, styles)
       }
