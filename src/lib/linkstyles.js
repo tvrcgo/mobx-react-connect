@@ -43,8 +43,17 @@ const isIterable = (target) => {
   return typeof iterator === 'function'
 }
 
+const isObject = (value) => {
+  const type = typeof value
+  return value != null && (type === 'object' || type === 'function')
+}
+
 // link styles and component
 const linkStyles = (element, styles) => {
+
+  if (!isObject(element) || !styles) {
+    return element
+  }
 
   let copyElement = element
   let isFrozen = false
@@ -68,6 +77,10 @@ const linkStyles = (element, styles) => {
     }
     // remove props.styleName
     delete copyElement.props.styleName
+  }
+
+  if (typeof copyElement.type !== 'string') {
+    return copyElement
   }
 
   // children
