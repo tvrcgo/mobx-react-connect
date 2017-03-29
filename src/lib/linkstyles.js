@@ -21,10 +21,13 @@ const unfreeze = (source) => {
   return target
 }
 
-const parseStyleNames = ({ styleName }) => {
+const parseStyleNames = ({ styleName, clazz }) => {
   let names = []
   if (styleName && typeof styleName === 'string') {
     names = styleName.split(' ')
+  }
+  if (clazz && typeof clazz === 'string') {
+    names = names.concat(clazz.split(' '))
   }
   return names
 }
@@ -77,6 +80,7 @@ const linkStyles = (element, styles) => {
     }
     // remove props.styleName
     delete copyElement.props.styleName
+    delete copyElement.props.clazz
   }
 
   // children

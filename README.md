@@ -70,9 +70,9 @@ import HelloView from './index'
 
 You won't need to set className for element like `className={css.title}` any more.
 
-- Set `styleName` attribute for element. Styles in css module will be combined into `className`.
-- Multiple style names is available, like `styleName='wrap title'`.
-- `styleName` and `className` can be concurrent and styles will be joined together.
+- Set `clazz` attribute for element. Styles in css module will be combined into `className`.
+- Multiple style names is available, like `clazz='wrap title'`.
+- `clazz` and `className` can be concurrent and styles will be joined together.
 
 ```js
 import { connect } from 'mobx-react-connect'
@@ -80,7 +80,7 @@ import css from './index.css'
 
 const View = ({ store }) => {
   return (
-    <div styleName='green red'></div>
+    <div clazz='green red'></div>
   )
 }
 
