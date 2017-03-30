@@ -2,11 +2,11 @@
 
 Connect react component, mobx store and css module.
 
-**connect( StatelessComponent, Store, CSSModule )**
+**connect( StatelessComponent, Context )**
 
 ### Features
 - Only stateless component.
-- Map observable store to props.
+- Map observable store to component.
 - Easy use of css modules.
 
 ### Install
@@ -49,13 +49,18 @@ import { connect } from 'mobx-react-connect'
 import Store from './index.store'
 
 // functional component
-const HelloView = ({ store }) => {
+const HelloView = (props, { store }) => {
   return (
     <h1>hello buddy. { store.userId } <a onClick={store.increase}>next</a></h1>
   )
 }
 
-export default connect(HelloView, Store)
+export default connect(HelloView, {
+  store: {
+    instance: true,
+    target: Store
+  }
+})
 ```
 
 Instantiate component.
@@ -78,13 +83,13 @@ You won't need to set className for element like `className={css.title}` any mor
 import { connect } from 'mobx-react-connect'
 import css from './index.css'
 
-const View = ({ store }) => {
+const View = () => {
   return (
     <div clazz='green red'></div>
   )
 }
 
-export default connect(View, {}, css)
+export default connect(View, { styles: css })
 ```
 
 `index.css` - Styles for component
