@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 import linkStyles from './linkstyles'
 
 // connect view component, stores, css modules
-const connect = (statelessComponent, context = {}, styles) => {
+const connect = (statelessComponent, stores = {}, styles = {}) => {
   const ctx = {}
   const reactClass = {}
   Object.keys(statelessComponent).forEach(key => {
@@ -12,8 +12,8 @@ const connect = (statelessComponent, context = {}, styles) => {
   })
   reactClass.displayName = statelessComponent.name || statelessComponent.displayName
   reactClass.componentWillMount = function() {
-    Object.keys(context).forEach(key => {
-      const item = context[key]
+    Object.keys(stores).forEach(key => {
+      const item = stores[key]
       ctx[key] = item
       if (item && typeof item === 'function') {
         ctx[key] = new item(this.props)
@@ -26,7 +26,7 @@ const connect = (statelessComponent, context = {}, styles) => {
   reactClass.render = function() {
     return linkStyles(statelessComponent({
       ...this.props
-    }, ctx, this.context), styles || {})
+    }, ctx, this.context), styles)
   }
   return observer(React.createClass(reactClass))
 }
