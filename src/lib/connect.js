@@ -3,8 +3,8 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import linkStyles from './linkstyles'
 
-// connect view component, store, css modules ...
-const connect = (statelessComponent, context = {}) => {
+// connect view component, stores, css modules
+const connect = (statelessComponent, context = {}, styles) => {
   const ctx = {}
   const reactClass = {}
   Object.keys(statelessComponent).forEach(key => {
@@ -15,18 +15,18 @@ const connect = (statelessComponent, context = {}) => {
     Object.keys(context).forEach(key => {
       const item = context[key]
       ctx[key] = item
-      if (item && item.instance === true && typeof item.target === 'function') {
-        ctx[key] = new item.target(this.props)
+      if (item && typeof item === 'function') {
+        ctx[key] = new item(this.props)
       }
-      if (item && item.observable === true) {
-        ctx[key] = observable(item.target)
+      if (item && typeof item === 'object') {
+        ctx[key] = observable(item)
       }
     })
   }
   reactClass.render = function() {
     return linkStyles(statelessComponent({
       ...this.props
-    }, ctx, this.context), ctx.styles || {})
+    }, ctx, this.context), styles || {})
   }
   return observer(React.createClass(reactClass))
 }

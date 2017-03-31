@@ -2,12 +2,12 @@
 
 Connect react component, mobx store and css module.
 
-**connect( StatelessComponent, Context )**
+**connect( StatelessComponent, Stores, CSSModule )**
 
 ### Features
 - Only stateless component.
-- Map observable store to component.
-- Easy use of css modules.
+- Map observable stores to component.
+- Easy to use css modules.
 
 ### Install
 ```js
@@ -56,10 +56,7 @@ const HelloView = (props, { store }) => {
 }
 
 export default connect(HelloView, {
-  store: {
-    instance: true,
-    target: Store
-  }
+  store: Store
 })
 ```
 
@@ -89,7 +86,7 @@ const View = () => {
   )
 }
 
-export default connect(View, { styles: css })
+export default connect(View, {}, css)
 ```
 
 `index.css` - Styles for component
