@@ -27,6 +27,9 @@
     "react": "^15.4.2"
   },
   "devDependencies": {
+    "mobx": "^3.1.5",
+    "mobx-react": "^4.1.0",
+    "react": "^15.4.2",
     "webpack-compile-loop": "^0.3.4"
   }
 }
